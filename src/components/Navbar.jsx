@@ -5,6 +5,8 @@ import {
 import 'bootstrap/dist/css/bootstrap.css';
 
 class MyNav extends Component {
+
+    // return selected city
     sendData = (city) => {
         this.props.getCity(city)
     }

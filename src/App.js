@@ -9,6 +9,8 @@ class App extends Component {
     this.state = { city:'', data:[], skip:0 }
   }
 
+
+  // detect if scrolled to bottom
   isBottom(el) {
     return el.getBoundingClientRect().bottom <= window.innerHeight
   }
@@ -24,14 +26,14 @@ class App extends Component {
   trackScrolling = () => {
     const wrappedElement = document.getElementById('root')
     if (this.isBottom(wrappedElement)) {
-      this.callApi()
+      this.recallApi()
       document.removeEventListener('scroll', this.trackScrolling)
     }
   }
 
   
-
-  callApi() {
+  // recall api
+  recallApi() {
     let url = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/' 
                 + this.state.city
                 + '?$top=30&$skip='
@@ -46,8 +48,9 @@ class App extends Component {
         })
   }
 
+  // refresh city and state, initialize data
   transData=(city)=>{
-    this.setState({ city:city, data: [] })
+    this.setState({ city: city, data: [], skip: 0})
     let url = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/' 
                 + city
                 + '?$top=30&$skip=0&$format=JSON'

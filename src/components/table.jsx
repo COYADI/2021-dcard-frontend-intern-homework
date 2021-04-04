@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class ViewTable extends React.Component {
     
+    // build table body
     makeTable() {
         console.log(this.props.targetData)
-        return this.props.targetData.map((student, index) => {
-            const { ID, Name, DescriptionDetail } = student //destructuring
+        return this.props.targetData.map((data) => {
+            const { ID, Name, DescriptionDetail } = data
             return (
                <tr key={ID}>
                   <td>{Name}</td>
