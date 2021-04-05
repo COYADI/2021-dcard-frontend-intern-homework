@@ -3,17 +3,16 @@
 Worked mainly on three files
 
 * src/App.js
-  - Getting selected city from Nav Component
-  - Calling and Recalling Api
-  - Sending data to Table Component
+  - The App, combining components.
+  - Defining route.
 
 * src/components/Navbar.jsx
-  - Displaying selectable cities
-  - Sending selected city to App
+  - Displaying selectable cities.
+  - Changing pages.
 
 * src/components/table.jsx
-  - Dealing data from App
-  - Displaying result table
+  - Dealing data from API.
+  - Displaying result table.
 
 # Getting Started with Create React App
 
