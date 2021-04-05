@@ -3,12 +3,21 @@ import {
     NavDropdown,
     Nav } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
+import { cities } from "../constant";
 
 class MyNav extends Component {
 
     // return selected city
-    sendData = (city) => {
-        this.props.getCity(city)
+    // sendData = (city) => {
+    //     this.props.getCity(city)
+    // }
+
+    getDropdown() {
+        return cities.map((city) => {
+            return(
+                <NavDropdown.Item key={city} eventKey={city} href={`/scenicSpot/` + city}>{city}</NavDropdown.Item>
+            )
+        })
     }
 
     render(){
@@ -20,33 +29,12 @@ class MyNav extends Component {
                     </h3>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="">
+                    <Nav.Link eventKey="" href="/scenicSpot">
                         All
                     </Nav.Link>
                 </Nav.Item>
                 <NavDropdown title="Select City" id="nav-dropdown">
-                    <NavDropdown.Item eventKey="Taipei">Taipei</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="NewTaipei">NewTaipei</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="Taoyuan">Taoyuan</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="Taichung">Taichung</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="Tainan">Tainan</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="Kaohsiung">Kaohsiung</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="Keelung">Keelung</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="Hsinchu">Hsinchu</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="HsinchuCounty">Hsinchu County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="MiaoliCounty">Miaoli County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="ChanghuaCounty">Changhua County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="NantouCounty">Nantou County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="YunlinCounty">Yunlin County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="ChiayiCounty">Chiayi County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="Chiayi">Chiayi</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="PingtungCounty">Pingtung County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="YilanCounty">Yilan County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="HualienCounty">Hualien County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="TaitungCounty">Taitung County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="KinmenCounty">Kinmen County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="PenghuCounty">Penghu County</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="LienchiangCounty">Lienchiang County</NavDropdown.Item>
+                    {this.getDropdown()}
                 </NavDropdown>
             </Nav>
         );

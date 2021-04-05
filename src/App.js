@@ -1,34 +1,17 @@
 import React, { Component } from "react";
 import ViewTable from "./components/table";
 import MyNav from "./components/Navbar";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom"
 
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = { city:'', data:[], skip:0 }
-  }
-
-
-  // detect if scrolled to bottom
-  isBottom(el) {
-    return el.getBoundingClientRect().bottom <= window.innerHeight
-  }
-  
-  componentDidMount() {
-    setInterval(() => {document.addEventListener('scroll', this.trackScrolling)}, 1000)
-  }
-  
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.trackScrolling)
-  }
-  
-  trackScrolling = () => {
-    const wrappedElement = document.getElementById('root')
-    if (this.isBottom(wrappedElement)) {
-      this.recallApi()
-      document.removeEventListener('scroll', this.trackScrolling)
-    }
   }
 
   
@@ -50,6 +33,7 @@ class App extends Component {
 
   // refresh city and state, initialize data
   transData=(city)=>{
+    console.log('loading')
     this.setState({ city: city, data: [], skip: 0})
     let url = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/' 
                 + city
@@ -63,13 +47,30 @@ class App extends Component {
         })
   }
 
+  // render() {
+  //   return (
+  //     <div className="App">
+  //       <MyNav getCity = {this.transData.bind(this)}/>
+  //       <ViewTable targetData = {this.state.data} targetCity = {this.state.city}/>
+  //     </div>
+  //   );
+  // }
   render() {
-    return (
-      <div className="App">
-        <MyNav getCity = {this.transData.bind(this)}/>
-        <ViewTable targetData = {this.state.data} targetCity = {this.state.city}/>
-      </div>
-    );
+    return(
+      <Router>
+        <div>
+          <MyNav/>
+          <Switch>
+            <Route exact path='/scenicSpot'>
+              <ViewTable/>
+            </Route>
+            <Route exact path='/scenicSpot/:city'>
+              <ViewTable/>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    )
   }
  
 }
