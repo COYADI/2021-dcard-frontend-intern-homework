@@ -4,20 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class ViewTable extends React.Component {
     
-    // build table body
-    // makeTable() {
-    //     console.log(window.location.pathname)
-    //     console.log(this.props.targetData)
-    //     return this.props.targetData.map((data) => {
-    //         const { ID, Name, DescriptionDetail } = data
-    //         return (
-    //            <tr key={ID}>
-    //               <td>{Name}</td>
-    //               <td>{DescriptionDetail}</td>
-    //            </tr>
-    //         )
-    //     })
-    // }
     constructor(props) {
         super(props)
         this.state = { data:[], skip:0, gen: true }

@@ -7,11 +7,6 @@ import { cities } from "../constant";
 
 class MyNav extends Component {
 
-    // return selected city
-    // sendData = (city) => {
-    //     this.props.getCity(city)
-    // }
-
     getDropdown() {
         return cities.map((city) => {
             return(
